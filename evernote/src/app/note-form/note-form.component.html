@@ -1,0 +1,24 @@
+<h1>Notizenformular</h1>
+<form class="ui large form" [formGroup]="noteForm"
+      (ngSubmit)="submitForm()">
+  <input type="hidden" formControlName="id">
+  <div class="field">
+    <label>Titel</label>
+    <input formControlName="title">
+    @if (errors['title']) {
+      <div class="ui negative message">{{ errors['title'] }}</div>
+    }
+  </div>
+  <div class="field">
+    <label>Beschreibung</label>
+    <textarea formControlName="description" rows="3"></textarea>
+  </div>
+<!--  <div class="tags">-->
+<!--    <label>Tags</label>-->
+<!--    <div class="field">-->
+<!--      <input formControlName="tags">-->
+<!--    </div>-->
+<!--  </div>-->
+  <button type="submit" class="ui button" [disabled]="noteForm.invalid">Speichern
+  </button>
+</form>

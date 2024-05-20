@@ -1,0 +1,40 @@
+@if (note) {
+  <div class="ui grid">
+    <div class="twelve wide column">
+      <h1 class="ui header">{{ note.title }}</h1>
+      <div class="four wide column">
+        <h4 class="ui header">Tag:</h4>
+        @for (notetag of note?.notetags; track notetag; let l = $last) {
+          <span>{{ notetag.title
+            }}@if (!l) {
+              <span>, </span>
+            }</span>
+        }
+
+        <div class="sixteen wide column">
+          <div class="ui small images">
+            @for (thumbnail of note.images; track thumbnail) {
+              <img [src]="thumbnail.url">
+            }
+          </div>
+        </div>
+      </div>
+      <h3 class="ui header">Note ID: {{ note.id }}</h3>
+      <div class="ui divider"></div>
+      <div class="ui grid">
+      </div>
+    </div>
+    <div class="sixteen wide column">
+      <h3 class="ui header">Beschreibung</h3>
+      {{ note.description }}
+    </div>
+  </div>
+  <button class="ui tiny red labeled icon button" (click)="removeNote()">
+    <i class="trash icon"></i>Note Löschen</button>
+
+    <button [routerLink]="'/notes'" class="ui tiny blue labeled icon button">
+      <i class="list icon"></i> alle Notizen anzeigen</button>
+
+  <a class="ui tiny yellow labeled icon button" [routerLink]="['/notes', note.id, 'edit']">
+    <i class="write icon"></i> Note bearbeiten</a>
+}

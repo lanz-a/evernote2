@@ -1,0 +1,14 @@
+<div class="ui middle aligned selection divided list">
+  <h1 class="ui header">Todoübersicht</h1>
+  @for (todo of todos; track todo.title) {
+    <a class="app-todo-list-item" [todo]="todo" [routerLink]="todo.id.toString()"></a>
+  }
+  @if (!todos) {
+    <div class="ui active dimmer">
+      <div class="ui large text loader">Todos werden geladen</div>
+    </div>
+  }
+  @if (todos && !todos.length) {
+    <p>Es wurden noch keine Todos eingetragen.</p>
+  }
+</div>

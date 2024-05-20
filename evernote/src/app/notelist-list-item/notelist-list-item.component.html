@@ -1,0 +1,16 @@
+@if (notelist && notelist.images && notelist.images[0]){
+  <img class="ui tiny image" [src]="notelist.images[0].url">
+}
+
+<div class="content">
+  <div class="ui dividing header">{{notelist?.title}}</div>
+  <div class="description">{{notelist?.description}}</div>
+  <br>
+  <div class="metadata">
+    @for (user of notelist?.users; track user; let l=$last){
+      <span>{{user.firstname}}  {{user.lastname}} @if (!l){<span>,</span>}</span>
+    }
+  </div>
+</div>
+
+

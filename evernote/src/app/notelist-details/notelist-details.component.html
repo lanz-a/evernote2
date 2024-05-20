@@ -1,0 +1,33 @@
+@if (notelist) {
+  <div class="ui grid">
+    <div class="twelve wide column">
+      <h1 class="ui header">Name der Liste: {{ notelist.title }}</h1>
+
+      <div class=" sixteen wide column">
+        <div class="description">Erstellt am:  {{ notelist.created_at | date: 'dd.MM.yyyy' }}
+        Listen ID: {{ notelist.id }}</div>
+      </div>
+      <div class="sixteen wide column">
+        <h3 class="ui header">Beschreibung:</h3>
+        {{ notelist.description }}
+      </div>
+      <br>
+      @for (note of notelist.note; track note.title) {
+        <div class="ui dividing header">{{ note?.title }}</div>
+        <div class="description">{{ note?.description }}</div>
+      }
+    </div>
+  </div>
+
+  <button class="ui tiny red labeled icon button" (click)="removeNotelist()">
+    <i class="trash icon"></i>Liste Löschen
+  </button>
+
+  <button [routerLink]="'/notelists'" class="ui tiny blue labeled icon button">
+    <i class="list icon"></i> alle Listen anzeigen
+  </button>
+
+  <a class="ui tiny yellow labeled icon button" [routerLink]="['/notelists', notelist.id, 'edit']">
+    <i class="write icon"></i>Liste bearbeiten</a>
+
+}

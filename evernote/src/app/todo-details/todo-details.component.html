@@ -1,0 +1,46 @@
+@if (todo) {
+  <div class="ui grid">
+    <div class="twelve wide column">
+      <h1 class="ui header">Name des Todos: {{ todo.title }}</h1>
+      <div class="four wide column">
+        <h4 class="ui header">Tag:</h4>
+        @for (notetag of todo?.notetags; track notetag; let l = $last) {
+          <span>{{
+              notetag.title
+            }}@if (!l) {
+              <span>, </span>
+            }</span>
+        }
+
+        <div class="sixteen wide column">
+          <div class="ui small images">
+            @for (thumbnail of todo.images; track thumbnail) {
+              <img [src]="thumbnail.url">
+            }
+          </div>
+        </div>
+      </div>
+      <h3 class="ui header">Todo ID: {{ todo.id }}</h3>
+      <div class="ui divider"></div>
+      <div class="ui grid">
+
+      </div>
+    </div>
+    <div class="sixteen wide column">
+      <h3 class="ui header">Beschreibung</h3>
+      {{ todo.description }}
+    </div>
+  </div>
+  <button class="ui tiny red labeled icon button" (click)="removeTodo()">
+    <i class="trash icon"></i>Todo Löschen
+  </button>
+
+  <button [routerLink]="'/todos'" class="ui tiny blue labeled icon button">
+    <i class="list icon"></i> alle Todo anzeigen
+  </button>
+
+<!--  <a class="ui tiny yellow labeled icon button" [routerLink]="['/todos', todo.id, 'edit']">-->
+<!--    <i class="write icon"></i>-->
+<!--    Todo bearbeiten-->
+<!--  </a>-->
+}

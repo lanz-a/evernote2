@@ -1,0 +1,14 @@
+<div class="ui middle aligned selection divided list">
+  <h1 class="ui header">Listenübersicht</h1>
+  @for (notelist of notelists; track notelist.title) {
+    <a class="app-notelist-list-item" [notelist]="notelist" [routerLink]="notelist.id.toString()"></a>
+  }
+  @if (!notelists) {
+    <div class="ui active dimmer">
+      <div class="ui large text loader">Listen werden geladen</div>
+    </div>
+  }
+  @if (notelists && !notelists.length) {
+    <p>Es wurden noch keine Listen eingetragen.</p>
+  }
+</div>
